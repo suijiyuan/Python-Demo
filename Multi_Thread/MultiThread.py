@@ -2,13 +2,13 @@ import time
 import _thread
 
 
-def func1(lock):
+def _func1(lock):
     time.sleep(5)
     print('func1()')
     lock.release()
 
 
-def func2(lock):
+def _func2(lock):
     print('func2()')
     lock.release()
 
@@ -24,8 +24,8 @@ if __name__ == '__main__':
     lock2.acquire()
     locks.append(lock2)
 
-    _thread.start_new_thread(func1, (lock1,))
-    _thread.start_new_thread(func2, (lock2,))
+    _thread.start_new_thread(_func1, (lock1,))
+    _thread.start_new_thread(_func2, (lock2,))
     for item in locks:
         while item.locked():
             pass

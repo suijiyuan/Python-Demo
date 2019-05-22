@@ -2,6 +2,9 @@ import threading
 import time
 
 
+# more information about Semaphore and BoundedSemaphore:
+# https://stackoverflow.com/questions/48971121/what-is-the-difference-between-semaphore-and-boundedsemaphore
+
 def _work(_semaphore, _num):
     _semaphore.acquire()
     time.sleep(2)
@@ -10,7 +13,7 @@ def _work(_semaphore, _num):
 
 
 def _main():
-    semaphore = threading.Semaphore(2)
+    semaphore = threading.BoundedSemaphore(2)
     for num in range(10):
         threading.Thread(target=_work, args=(semaphore, num)).start()
 

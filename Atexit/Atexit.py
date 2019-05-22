@@ -1,14 +1,14 @@
 import atexit
 
 
-def main():
+def _main():
     print('main()')
 
 
 @atexit.register
-def at_exit():
+def _at_exit():
     print('done')
 
 
 if __name__ == '__main__':
-    main()
+    _main()
